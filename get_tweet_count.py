@@ -30,7 +30,7 @@ def connect_to_endpoint(search_url, params):
 def get_team_tweet_count():
     team_tweets_count = {}
     for team in premier_league_teams:
-        query_params = {'query': team,'start_time': '2022-11-13T00:00:00.000Z'}
+        query_params = {'query': f"\"{team}\" lang:en -is:retweet",'start_time': '2022-11-14T00:00:00.000Z'}
         json_response = connect_to_endpoint(search_url, query_params)
         total_tweet_count = json_response["meta"]
         team_tweets_count[team] = total_tweet_count
