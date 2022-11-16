@@ -3,6 +3,7 @@ import os
 import json
 from dotenv import load_dotenv
 import pandas as pd
+from constants import PREMIER_LEAGUE_TEAMS
 
 class GetTweets:
 
@@ -10,7 +11,7 @@ class GetTweets:
         load_dotenv()
         self.bearer_token = os.getenv('BEARER_TOKEN')
         self.search_url = "https://api.twitter.com/2/tweets/search/recent"
-        self.teams = ["chelsea fc","manchester city"] # change to constants
+        self.teams = PREMIER_LEAGUE_TEAMS 
         self.team_tweets = {}
         self.team_tweets_text = {}
 
@@ -22,7 +23,7 @@ class GetTweets:
                     if team not in self.team_tweets_text:
                         self.team_tweets_text[team] = []
                     self.team_tweets_text[team].append(text['text'])
-                    
+
         #create df from team tweets
         team_tweets_df = pd.DataFrame.from_dict(self.team_tweets_text,orient='index').T
         print(team_tweets_df.head(10))
@@ -31,8 +32,9 @@ class GetTweets:
     def __get_all_team_tweets(self):
 
         for team in self.teams:
+            print(f"Fetching tweets for {team}")
             query_params = {'query': f"\"{team}\" lang:en -is:retweet",
-                            'start_time': '2022-11-14T00:00:00.000Z',
+                            'start_time': '2022-11-16T00:00:00.000Z',
                             'max_results':100,
                             }
             self.__connect_to_endpoint(query_params,team)
@@ -65,3 +67,4 @@ class GetTweets:
 
 get_tweets = GetTweets()
 get_tweets.get_all_team_tweets_text()
+
