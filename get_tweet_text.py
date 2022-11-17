@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime,timedelta
 import os
 import json
 from dotenv import load_dotenv
@@ -10,8 +11,10 @@ class GetTweets:
     def __init__(self):
         load_dotenv()
         self.bearer_token = os.getenv('BEARER_TOKEN')
+        self.yesterday_date = (datetime.utcnow()- timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        print("fetch time yesterday: ",self.yesterday_date)
         self.search_url = "https://api.twitter.com/2/tweets/search/recent"
-        self.teams = PREMIER_LEAGUE_TEAMS 
+        self.teams = PREMIER_LEAGUE_TEAMS
         self.team_tweets = {}
         self.team_tweets_text = {}
 
@@ -34,7 +37,7 @@ class GetTweets:
         for team in self.teams:
             print(f"Fetching tweets for {team}")
             query_params = {'query': f"\"{team}\" lang:en -is:retweet",
-                            'start_time': '2022-11-16T00:00:00.000Z',
+                            'start_time': self.yesterday_date,
                             'max_results':100,
                             }
             self.__connect_to_endpoint(query_params,team)
@@ -58,7 +61,7 @@ class GetTweets:
         self.team_tweets[team].append(response_json['data'])
         if 'next_token' in response_json['meta']:
             query_params = {'query': f"\"{team}\" lang:en -is:retweet",
-                            'start_time': '2022-11-14T00:00:00.000Z',
+                            'start_time': self.yesterday_date,
                             'max_results':100,
                             'next_token':response_json['meta']['next_token']
                             }
