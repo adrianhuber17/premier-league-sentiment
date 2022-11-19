@@ -24,59 +24,68 @@ from sklearn.metrics import confusion_matrix, classification_report
 import time
 
 # -----Importing the dataset :-----
-# DATASET_COLUMNS=['target','ids','date','flag','user','text']
-# DATASET_ENCODING = "ISO-8859-1"
-# df = pd.read_csv('training.1600000.processed.noemoticon.csv', encoding=DATASET_ENCODING, names=DATASET_COLUMNS)
+DATASET_COLUMNS=['target','ids','date','flag','user','text']
+DATASET_ENCODING = "ISO-8859-1"
+df = pd.read_csv('training_data_set.csv', encoding=DATASET_ENCODING, names=DATASET_COLUMNS)
 
-# # -----Display of the first 5 lines of our dataset :-----
-# print(df.head())
+# -----Display of the first 5 lines of our dataset :-----
+print('-----Traning data set head-----')
+print(df.head())
 
-# # ----Display the column names of our dataset and additional information :-----
-# print(df.columns)
-# print(df.shape)
-# print(df.info)
-# print(df.dtypes)
+# ----Display the column names of our dataset and additional information :-----
+print("-----Traning data set additional information")
+print(df.columns)
+print(df.shape)
+print(df.info)
+print(df.dtypes)
 
-# # ----Checking for Null values :----
-# print(np.sum(df.isnull().any(axis=1)))
+# ----Checking for Null values :----
+print("-----Traning data set null values")
+print(np.sum(df.isnull().any(axis=1)))
 
-# # ----Rows and columns in the dataset :-----
-# print('Count of columns in the data is:  ', len(df.columns))
-# print('Count of rows in the data is:  ', len(df))
+# ----Rows and columns in the dataset :-----
+print("-----Traning data set rows and columns-----")
+print('Count of columns in the data is:  ', len(df.columns))
+print('Count of rows in the data is:  ', len(df))
 
-# # -----Checking unique Target Values :-----
-# print('unique target values: ',df['target'].unique())
-# print('number of unique target values: ', df['target'].nunique())
-# print(df.groupby('target').count())
-
-
-# # -----Plotting the distribution for dataset :-----
-# ax = df.groupby('target').count().plot(kind='bar', title='Distribution of data',legend=False)
-# # Naming 0 -> Negative , and 4 -> Positive
-# ax.set_xticklabels(['Negative','Positive'], rotation=0)
-# # Storing data in lists :
-# text, sentiment = list(df['text']), list(df['target'])
-# plt.show()
-
-# # ----Selecting the text and Target column for our further analysis :---
-# data = df[['text','target']]
-# # -----Replacing the values to ease understanding :----
-# data['target'] = data['target'].replace(4,1)
-# # # ----Print unique values of target variable :----
-# # print(data['target'].unique())
+# -----Checking unique Target Values :-----
+print("-----Training data set unique values")
+print('unique target values: ',df['target'].unique())
+print('number of unique target values: ', df['target'].nunique())
+print(df.groupby('target').count())
 
 
-# # -----Separating positive and negative tweets :-----
-# data_pos = data[data['target'] == 1]
-# data_neg = data[data['target'] == 0]
+# -----Plotting the distribution for dataset :-----
+print("-----distribution of training data set-----")
+ax = df.groupby('target').count().plot(kind='bar', title='Distribution of data',legend=False)
+# Naming 0 -> Negative , and 4 -> Positive
+ax.set_xticklabels(['Negative','Positive'], rotation=0)
+# Storing data in lists :
+text, sentiment = list(df['text']), list(df['target'])
+plt.show()
 
-# # -----Combining positive and negative tweets :-----
-# dataset = pd.concat([data_pos, data_neg])
-# # print(dataset['text'].tail())
+# ----Selecting the text and Target column for our further analysis :---
+print("-----Selecting the text and Target column for our further analysis-----")
+data = df[['text','target']]
+# -----Replacing the values to ease understanding :----
+data['target'] = data['target'].replace(4,1)
+# # ----Print unique values of target variable :----
+print(data['target'].unique())
 
-# # ----Making statement text in lower case :----
-# dataset['text'] = dataset['text'].str.lower()
-# # print(dataset['text'].tail())
+
+# -----Separating positive and negative tweets :-----
+print("-----Separating positive and negative tweets-----")
+data_pos = data[data['target'] == 1]
+data_neg = data[data['target'] == 0]
+
+# -----Combining positive and negative tweets :-----
+print("-----Combining positive and negative tweets-----")
+dataset = pd.concat([data_pos, data_neg])
+print(dataset['text'].tail())
+
+# ----Making statement text in lower case :----
+dataset['text'] = dataset['text'].str.lower()
+print(dataset['text'].tail())
 
 # # -----Defining set containing all stopwords in English :-----
 # stopwordlist = ['a', 'about', 'above', 'after', 'again', 'ain', 'all', 'am', 'an',
@@ -186,6 +195,7 @@ import time
 
 
 data = pd.read_csv('data.csv')
+print(data.head())
 # dataset = pd.read_csv('dataset.csv')
 # data_neg = pd.read_csv('data_neg.csv')
 # data_pos = pd.read_csv('data_pos.csv')
@@ -212,7 +222,7 @@ y = data.target
 
 # Separating the 95% data for training data and 5% for testing data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05, random_state=26105111)
-print(X_test)
+# print(X_test)
 
 # Fit the TF-IDF Vectorizer :
 vectoriser = TfidfVectorizer(ngram_range=(1,2), max_features=500000)
@@ -248,7 +258,19 @@ BNBmodel = BernoulliNB()
 start = time.time()
 BNBmodel.fit(X_train, y_train)
 end = time.time()
-# print("The execution time of this model is {:.2f} seconds\n".format(end-start))
+print("The execution time of this model is {:.2f} seconds\n".format(end-start))
 # model_Evaluate(BNBmodel)
 y_pred1 = BNBmodel.predict(X_test)
 print(y_pred1)
+print(BNBmodel.score(X_test,y_test))
+
+import pickle
+file_name = 'bernoulli_model.sav'
+pickle.dump(BNBmodel,open(file_name,'wb'))
+#load model
+loaded_bernoulli_model = pickle.load(open(file_name,'rb'))
+y_pred1 = loaded_bernoulli_model.predict(X_test)
+print(y_pred1)
+print(loaded_bernoulli_model.score(X_test,y_test))
+
+
