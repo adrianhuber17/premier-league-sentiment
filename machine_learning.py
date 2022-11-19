@@ -186,9 +186,9 @@ import time
 
 
 data = pd.read_csv('data.csv')
-dataset = pd.read_csv('dataset.csv')
-data_neg = pd.read_csv('data_neg.csv')
-data_pos = pd.read_csv('data_pos.csv')
+# dataset = pd.read_csv('dataset.csv')
+# data_neg = pd.read_csv('data_neg.csv')
+# data_pos = pd.read_csv('data_pos.csv')
 
 # ----Separating input feature and label :----
 X = data.text
@@ -212,6 +212,7 @@ y = data.target
 
 # Separating the 95% data for training data and 5% for testing data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05, random_state=26105111)
+print(X_test)
 
 # Fit the TF-IDF Vectorizer :
 vectoriser = TfidfVectorizer(ngram_range=(1,2), max_features=500000)
@@ -223,3 +224,31 @@ X_train = vectoriser.transform(X_train)
 X_test  = vectoriser.transform(X_test)
 # print(X_test)
 
+def model_Evaluate(model):
+    # Predict values for Test dataset
+    y_pred = model.predict(X_test)
+    # Print the evaluation metrics for the dataset.
+    print(classification_report(y_test, y_pred))
+    # Compute and plot the Confusion matrix
+    cf_matrix = confusion_matrix(y_test, y_pred)
+    categories = ['Negative','Positive']
+    group_names = ['True Neg','False Pos', 'False Neg','True Pos']
+    group_percentages = ['{0:.2%}'.format(value) for value in cf_matrix.flatten() / np.sum(cf_matrix)]
+    labels = [f'{v1}n{v2}' for v1, v2 in zip(group_names,group_percentages)]
+    labels = np.asarray(labels).reshape(2,2)
+    sns.heatmap(cf_matrix, annot = labels, cmap = 'Blues',fmt = '',
+    xticklabels = categories, yticklabels = categories)
+    plt.xlabel("Predicted values", fontdict = {'size':14}, labelpad = 10)
+    plt.ylabel("Actual values" , fontdict = {'size':14}, labelpad = 10)
+    plt.title ("Confusion Matrix", fontdict = {'size':18}, pad = 20)
+    plt.show()
+
+# Model-1 : Bernoulli Naive Bayes.
+BNBmodel = BernoulliNB()
+start = time.time()
+BNBmodel.fit(X_train, y_train)
+end = time.time()
+# print("The execution time of this model is {:.2f} seconds\n".format(end-start))
+# model_Evaluate(BNBmodel)
+y_pred1 = BNBmodel.predict(X_test)
+print(y_pred1)
