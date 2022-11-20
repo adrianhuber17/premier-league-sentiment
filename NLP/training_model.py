@@ -94,10 +94,3 @@ print("-----saving model-----")
 import pickle
 file_name = 'NLP/bernoulli_model.sav'
 pickle.dump(BNBmodel,open(file_name,'wb'))
-
-#TODO: send loaded model to a different file to process football tweets
-#load model
-# loaded_bernoulli_model = pickle.load(open(file_name,'rb'))
-# y_pred1 = loaded_bernoulli_model.predict(X_test)
-# print(y_pred1)
-# print(loaded_bernoulli_model.score(X_test,y_test))
