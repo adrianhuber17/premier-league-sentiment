@@ -25,7 +25,7 @@ import time
 # -----Importing the dataset :-----
 DATASET_COLUMNS = ["target", "ids", "date", "flag", "user", "text"]
 DATASET_ENCODING = "ISO-8859-1"
-data = pd.read_csv('NLP/training_data_set.csv', encoding =DATASET_ENCODING , names=DATASET_COLUMNS)
+data = pd.read_csv('NLP/train_model/training_data_set.csv', encoding =DATASET_ENCODING , names=DATASET_COLUMNS)
 print("---importing training data-----")
 print(data.head())
 print("-----changin target from 4 to 1 for positive comments")
@@ -185,4 +185,4 @@ data = data.dropna()
 print(data.head())
 #send clean data to csv
 print("-----sending clean data to csv-----")
-data.to_csv("NLP/clean_dataset.csv",na_rep='NULL')
+data.to_csv("NLP/train_model/clean_dataset.csv",na_rep='NULL')
