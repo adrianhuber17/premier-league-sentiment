@@ -4,7 +4,7 @@ import os
 import json
 from dotenv import load_dotenv
 import pandas as pd
-from backend.app.helper.constants import PREMIER_LEAGUE_TEAMS
+from app.helper.constants import PREMIER_LEAGUE_TEAMS
 
 class GetTweets:
 
@@ -26,11 +26,11 @@ class GetTweets:
                     if team not in self.team_tweets_text:
                         self.team_tweets_text[team] = []
                     self.team_tweets_text[team].append(text['text'])
-
+        # print(self.team_tweets_text)
         #create df from team tweets
-        team_tweets_df = pd.DataFrame.from_dict(self.team_tweets_text,orient='index').T
-        print(team_tweets_df.head(10))
-        team_tweets_df.to_csv("team_tweets.csv")
+        # team_tweets_df = pd.DataFrame.from_dict(self.team_tweets_text,orient='index').T
+        # print(team_tweets_df.head(10))
+        # team_tweets_df.to_csv("team_tweets.csv")
             
     def __get_all_team_tweets(self):
 
@@ -66,8 +66,5 @@ class GetTweets:
                             'next_token':response_json['meta']['next_token']
                             }
             self.__connect_to_endpoint(query_params,team)
-    
 
-get_tweets = GetTweets()
-get_tweets.get_all_team_tweets_text()
 
