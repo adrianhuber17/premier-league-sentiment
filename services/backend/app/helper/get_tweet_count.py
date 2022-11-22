@@ -2,7 +2,7 @@ import requests
 import os
 import json
 from dotenv import load_dotenv
-from constants import premier_league_teams
+from services.backend.app.helper.constants import premier_league_teams
 
 load_dotenv()
 bearer_token = os.getenv('BEARER_TOKEN')

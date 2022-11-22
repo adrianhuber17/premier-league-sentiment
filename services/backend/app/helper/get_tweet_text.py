@@ -4,7 +4,7 @@ import os
 import json
 from dotenv import load_dotenv
 import pandas as pd
-from constants import PREMIER_LEAGUE_TEAMS
+from backend.app.helper.constants import PREMIER_LEAGUE_TEAMS
 
 class GetTweets:
 

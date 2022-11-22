@@ -19,7 +19,7 @@ import time
 print("-----importing clean training data-----")
 DATASET_ENCODING = "ISO-8859-1"
 DATASET_COLUMNS = ["target", "ids", "date", "flag", "user", "text"]
-data = pd.read_csv('NLP/train_model/clean_dataset.csv',encoding=DATASET_ENCODING,names=DATASET_COLUMNS,low_memory=False)
+data = pd.read_csv('services/NLP/train_model/clean_dataset.csv',encoding=DATASET_ENCODING,names=DATASET_COLUMNS,low_memory=False)
 # y_data = pd.read_csv('NLP/clean_target.csv',encoding=DATASET_ENCODING)
 print("-----Traning dataset null values-----")
 check_nan = data['text'].isnull().values.any()
@@ -92,8 +92,8 @@ print("model score: ",BNBmodel.score(X_test,y_test))
 #saving model
 print("-----saving model-----")
 import pickle
-file_name = 'NLP/final_model/bernoulli_model.sav'
+file_name = 'services/NLP/final_model/bernoulli_model.sav'
 pickle.dump(BNBmodel,open(file_name,'wb'))
 print("-----saving vectorizer-----")
-file_name_vectorizer = "NLP/final_model/vectorizer.sav"
+file_name_vectorizer = "services/NLP/final_model/vectorizer.sav"
 pickle.dump(vectoriser,open(file_name_vectorizer,'wb'))
