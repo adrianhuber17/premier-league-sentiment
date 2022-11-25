@@ -1,4 +1,4 @@
-PREMIER_LEAGUE_TEAMS = ["arsenal fc"]
+PREMIER_LEAGUE_TEAMS = ["arsenal fc","chelsea fc"]
 
 # PREMIER_LEAGUE_TEAMS = ["arsenal fc","aston villa","bournemouth","brentford fc","brighton hove albion","chelsea fc",
 #                         "crystal palace","everton","fulham fc","leeds united","leicester city","liverpool fc","manchester city",

@@ -22,25 +22,20 @@ from nltk.corpus import stopwords
 # time library :
 import time
 
-def clean_tweet_data(team_tweets_text):
+def clean_tweet_data(data):
 
-    data = pd.DataFrame.from_dict(team_tweets_text)
-    print(data)
-    # -----Importing the dataset :-----
-    # DATASET_ENCODING = "ISO-8859-1"
-    # data = pd.read_csv('NLP/process_tweets/team_tweets.csv', encoding =DATASET_ENCODING)
     print("---importing  data-----")
     print(data.head())
     print(data.columns)
 
     # ----Display the column names of our dataset and additional information :-----
-    print("-----Traning data set additional information")
+    print("-----data set additional information")
     column = data.columns[0]
     print("data shape: ",data.shape)
     print("column name: ", column)
 
     # ----Checking for Null values :----
-    print("-----Traning data set null values")
+    print("-----data set null values")
     print(np.sum(data.isnull().any(axis=1)))
 
     # Text-preprocessing
