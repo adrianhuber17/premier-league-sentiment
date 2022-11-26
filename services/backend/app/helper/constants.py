@@ -3,4 +3,4 @@
 #                         "manchester united","newcastle fc","nottingham forest","southampton","tottenham",
 #                         "west ham","wolverhampton wanderers"]
 
-PREMIER_LEAGUE_TEAMS = ["arsenal fc","manchester united"]
+PREMIER_LEAGUE_TEAMS = ["traffic"]
