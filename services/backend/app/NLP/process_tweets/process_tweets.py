@@ -27,10 +27,11 @@ def get_tweet_sentiment(data):
     X_test = data[column]
     print(f"-----tweet data for {column}-----")
     # print(X_test)
-    file_name = "app/NLP/final_model/bernoulli_model.sav"
-    file_name_vectorizer = "app/NLP/final_model/vectorizer.sav"
+    file_name = "app/NLP/final_model/LR_Model.sav"
+    file_name_vectorizer = "app/NLP/final_model/vectorizer_LR_Model.sav"
     vectorizer = pickle.load(open(file_name_vectorizer,'rb'))
     loaded_bernoulli_model = pickle.load(open(file_name,'rb'))
+    print("----using logistical regression model-----")
     X_test  = vectorizer.transform(X_test)
     y_pred1 = loaded_bernoulli_model.predict(X_test)
     count_1 = 0

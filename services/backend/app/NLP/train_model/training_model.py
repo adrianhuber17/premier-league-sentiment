@@ -75,25 +75,26 @@ def model_evaluate(model):
     plt.title ("Confusion Matrix", fontdict = {'size':18}, pad = 20)
     plt.show()
 
-# Model-1 : Bernoulli Naive Bayes.
-print("-----creating and training Bernoulli Naive Bayes Model-----")
-BNBmodel = BernoulliNB()
+# Model-3 : Logistic Regression.
+print("-----creating and training Logistic Regression Model-----")
+# BNBmodel = BernoulliNB()
+LRModel = LogisticRegression(C=2,max_iter=1000,n_jobs=-1)
 start = time.time()
-BNBmodel.fit(X_train, y_train)
+LRModel.fit(X_train, y_train)
 end = time.time()
 print("The execution time of this model is {:.2f} seconds\n".format(end-start))
 print("-----evaluating model-----")
-model_evaluate(BNBmodel)
-y_pred1 = BNBmodel.predict(X_test)
+model_evaluate(LRModel)
+y_pred1 = LRModel.predict(X_test)
 print('test_predictions: ',y_pred1)
-print("model score: ",BNBmodel.score(X_test,y_test))
+print("model score: ",LRModel.score(X_test,y_test))
 
 
 #saving model
 print("-----saving model-----")
 import pickle
-file_name = 'final_model/bernoulli_model.sav'
-pickle.dump(BNBmodel,open(file_name,'wb'))
+file_name = 'final_model/LR_Model.sav'
+pickle.dump(LRModel,open(file_name,'wb'))
 print("-----saving vectorizer-----")
-file_name_vectorizer = "final_model/vectorizer.sav"
+file_name_vectorizer = "final_model/vectorizer_LR_Model.sav"
 pickle.dump(vectoriser,open(file_name_vectorizer,'wb'))
