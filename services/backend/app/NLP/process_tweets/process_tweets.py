@@ -41,6 +41,7 @@ def get_tweet_sentiment(data):
             count_0 += 1
         else:
             count_1 += 1
+    print(y_pred1)
     print(f"-----{column} tweet count = {len(y_pred1)}")
     print('postive_tweet_count: ', count_1)
     print('negative_tweet_count: ', count_0)

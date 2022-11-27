@@ -3,4 +3,4 @@
 #                         "manchester united","newcastle fc","nottingham forest","southampton","tottenham",
 #                         "west ham","wolverhampton wanderers"]
 
-PREMIER_LEAGUE_TEAMS = ["manchester united","manchester city"]
+PREMIER_LEAGUE_TEAMS = ["Donald Trump","Hillary Clinton"]
