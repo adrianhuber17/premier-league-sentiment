@@ -46,7 +46,9 @@ def get_tweet_sentiment(data):
     print('negative_tweet_count: ', count_0)
     return {column:{'positive_tweet_count':count_1,
             'negative_tweet_count':count_0,
-            'tweet_count':len(y_pred1)
+            'tweet_count':len(y_pred1),
+            'positive_percentage':round((count_1/len(y_pred1))*100,1),
+            'negative_percentage':round((count_0/len(y_pred1))*100,1)
             }
             }   
 
