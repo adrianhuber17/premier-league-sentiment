@@ -27,3 +27,18 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
+  frontend:
+    build:
+      context: ./services/frontend
+      dockerfile: Dockerfile
+    volumes:
+      - "./services/frontend:/usr/src/football-sentiment"
+      - "/usr/src/football-sentiment/node_modules"
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_BACKEND_SERVICE_URL=http://localhost:5004
+    depends_on:
+      - backend
