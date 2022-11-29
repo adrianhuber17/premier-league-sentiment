@@ -35,12 +35,13 @@ class GetTweets:
     def __get_all_team_tweets(self):
 
         for team in self.teams:
+            count = 0
             print(f"Fetching tweets for {team}")
             query_params = {'query': f"\"{team}\" lang:en -is:retweet",
                             'start_time': self.yesterday_date,
                             'max_results':100,
                             }
-            self.__connect_to_endpoint(query_params,team)
+            self.__connect_to_endpoint(query_params,team,count)
     
     def __bearer_oauth(self,r):
         """
@@ -51,7 +52,7 @@ class GetTweets:
         r.headers["User-Agent"] = "v2RecentSearchPython"
         return r
         
-    def __connect_to_endpoint(self, params,team):
+    def __connect_to_endpoint(self, params,team,count):
         response = requests.request("GET", self.search_url, auth=self.__bearer_oauth, params=params)
         if response.status_code != 200:
             raise Exception(response.status_code, response.text)
@@ -59,12 +60,16 @@ class GetTweets:
         if team not in self.team_tweets:
             self.team_tweets[team] = []
         self.team_tweets[team].append(response_json['data'])
+        if count == 4:
+            print("exited tweet search: ",count)
+            return
         if 'next_token' in response_json['meta']:
+            count += 1
             query_params = {'query': f"\"{team}\" lang:en -is:retweet",
                             'start_time': self.yesterday_date,
                             'max_results':100,
                             'next_token':response_json['meta']['next_token']
                             }
-            self.__connect_to_endpoint(query_params,team)
+            self.__connect_to_endpoint(query_params,team,count)
 
 
