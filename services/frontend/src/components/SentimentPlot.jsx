@@ -55,6 +55,7 @@ export const data = {
   ],
 };
 
-export function SentimentPlot() {
+export function SentimentPlot({ sentiment }) {
+  console.log(sentiment);
   return <Line options={options} data={data} />;
 }
