@@ -36,7 +36,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <h1>NLP Football Sentiment App... more to come</h1>
+      <h1>Premier League Sentiment Dashboard</h1>
       <>
         {loadingPing === false && <Pong connection={connection} />}
         {loading === false && <SentimentPlot sentiment={sentiment} />}

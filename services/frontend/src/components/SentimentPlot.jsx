@@ -37,12 +37,21 @@ export const options = {
 
 export function SentimentPlot({ sentiment }) {
   //labels need to be dynamic for the current day minus the 7 previous days
-  const labels = ["November", "December"];
+  const labels = [
+    "November",
+    "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+  ];
   const data = {
     labels,
     datasets: [
       {
         label: "Arsenal FC",
+        lineTension: 0.1,
         data: labels.map(() =>
           faker.datatype.number({ min: -1000, max: 1000 })
         ),
@@ -51,6 +60,7 @@ export function SentimentPlot({ sentiment }) {
       },
       {
         label: "Chelsea FC",
+        lineTension: 0.1,
         data: labels.map(() =>
           faker.datatype.number({ min: -1000, max: 1000 })
         ),
