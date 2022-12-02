@@ -23,3 +23,14 @@ DATABASE_INJECTION = [{'arsenal': {'positive_tweet_count': 331, 'negative_tweet_
                         {'tottenham': {'positive_tweet_count': 379, 'negative_tweet_count': 119, 'tweet_count': 498, 'positive_percentage': 76.1, 'negative_percentage': 23.9}}, 
                         {'west ham': {'positive_tweet_count': 351, 'negative_tweet_count': 148, 'tweet_count': 499, 'positive_percentage': 70.3, 'negative_percentage': 29.7}}, 
                         {'wolverhampton': {'positive_tweet_count': 296, 'negative_tweet_count': 125, 'tweet_count': 421, 'positive_percentage': 70.3, 'negative_percentage': 29.7}}]
+
+def random_injection(data):
+    import random
+
+    for sentiment in data:
+        for sent in sentiment.values():
+            rand_value = random.randint(50,80)
+            sent['positive_percentage'] = rand_value
+
+    return data
+
