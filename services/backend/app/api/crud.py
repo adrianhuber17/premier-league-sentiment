@@ -15,7 +15,7 @@ def add_tweet_sentiment(tweets_sentiment_json):
 def get_tweet_sentiment():
     """gets latest tweet sentiments"""
 
-    tweet_sentiment = db.session.query(Tweet).order_by(desc(Tweet.date)).limit(7)
+    tweet_sentiment = db.session.query(Tweet).order_by(Tweet.date).limit(7)
     tweet_sentiment_json = {}
     for sentiment_info in tweet_sentiment:
         
@@ -26,7 +26,7 @@ def get_tweet_sentiment():
             for team, sentiment in tweet.items():
                 if team not in tweet_sentiment_json:
                     tweet_sentiment_json[team] = []
-                tweet_sentiment_json[team].append({'date':date,'id':id,'sentiment':sentiment})
+                tweet_sentiment_json[team].append(sentiment['positive_percentage'])
 
     return tweet_sentiment_json
 
