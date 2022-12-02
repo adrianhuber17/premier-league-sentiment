@@ -83,8 +83,6 @@ export function SentimentPlot({ sentiment }) {
 
   const datasets = [];
   Object.keys(sentiment).forEach(function (key) {
-    //   console.log(key);
-    //   console.log(teams[key]);
     const datasetsObj = {};
     datasetsObj["label"] = key;
     datasetsObj["data"] = sentiment[key];
@@ -101,7 +99,15 @@ export function SentimentPlot({ sentiment }) {
     }
     datasets.push(datasetsObj);
   });
-  const labels = ["11/29/2022", "11/30/2022", "11/31/2022", "12/01/2022"];
+  const labels = [
+    "11/29/2022",
+    "11/30/2022",
+    "11/31/2022",
+    "12/01/2022",
+    "12/01/2022",
+    "12/03/2022",
+    "12/04/2022",
+  ];
   const data = {
     labels,
     datasets,

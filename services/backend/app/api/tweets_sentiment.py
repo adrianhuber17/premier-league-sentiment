@@ -13,6 +13,7 @@ class GetTweetsSentiment(Resource):
     
     def post(self):
         tweet_sentiments = nlp_tweets()
+        print("-----sentiment going into the database-----")
         print(tweet_sentiments)
         add_daily_tweet_sentiment = add_tweet_sentiment(tweet_sentiments)
         db.session.add(add_daily_tweet_sentiment)

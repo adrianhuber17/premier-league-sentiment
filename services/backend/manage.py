@@ -4,6 +4,7 @@ import sys, os
 from flask.cli import FlaskGroup
 from app import create_app,db
 from app.api.crud import add_tweet_sentiment
+from app.helper.constants import DATABASE_INJECTION
 
 
 app = create_app()
@@ -19,15 +20,7 @@ def recreate_db():
 
 @cli.command('populate_db')
 def populate_db():
-    tweet_sentiment_json = [{'arsenal':{'positive_tweet_count':10,
-                                        'negative_tweet_count':10,
-                                        'tweet_count':20
-                                        },
-                            'chelsea':{'positive_tweet_count':10,
-                                        'negative_tweet_count':10,
-                                        'tweet_count':20
-                                        }
-                            }]
+    tweet_sentiment_json = DATABASE_INJECTION
     add_daily_tweet_sentiment = add_tweet_sentiment(tweet_sentiment_json)
     db.session.add(add_daily_tweet_sentiment)
     db.session.commit()
