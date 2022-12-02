@@ -37,46 +37,48 @@ export const options = {
 
 export function SentimentPlot({ sentiment }) {
   const teamBorderColors = {
-    "chelsea fc": "rgba(3, 70, 148)",
+    chelsea: "rgba(3, 70, 148)",
     "manchester city": "rgba(108, 171, 221)",
-    "arsenal fc": "rgba(239, 1, 7)",
+    arsenal: "rgba(239, 1, 7)",
     "aston villa": "rgba(149,191,229)",
     bournemouth: "rgba(218, 41, 28)",
-    "brighton hove albion": "rgba(0, 87, 184)",
+    brighton: "rgba(0, 87, 184)",
     "crystal palace": "rgba(27, 69, 143)",
     everton: "rgba(39,68,136)",
-    "fulham fc": "rgba(0, 0, 0)",
+    fulham: "rgba(0, 0, 0)",
     "leeds united": "rgba(255,205,0)",
     "leicester city": "rgba(0,83,160)",
-    "liverpool fc": "rgba(200, 16, 46)",
+    liverpool: "rgba(200, 16, 46)",
     "manchester united": "rgba(218, 41, 28)",
-    "newcastle fc": "rgba(45, 41, 38)",
+    newcastle: "rgba(45, 41, 38)",
     "nottingham forest": "rgba(229, 50, 51)",
-    "southampton fc": "rgba(215, 25, 32)",
+    southampton: "rgba(215, 25, 32)",
     tottenham: "rgba(19, 34, 87)",
     "west ham": "rgba(122, 38, 58)",
-    "wolverhampton wanderers": "rgba(253,185,19)",
+    wolverhampton: "rgba(253,185,19)",
+    brentford: "rgb(239, 1, 7)",
   };
   const teamBackgroundColors = {
     "manchester united": "rgba(218, 41, 28,0.5)",
-    "chelsea fc": "rgba(3, 70, 148, 0.5)",
+    chelsea: "rgba(3, 70, 148, 0.5)",
     "manchester city": "rgba(108, 171, 221,0.5)",
-    "arsenal fc": "rgba(239, 1, 7,0.5)",
+    arsenal: "rgba(239, 1, 7,0.5)",
     "aston villa": "rgba(149,191,229,0.5)",
     bournemouth: "rgba(218, 41, 28,0.5)",
-    "brighton hove albion": "rgba(0, 87, 184,0.5)",
+    brighton: "rgba(0, 87, 184,0.5)",
     "crystal palace": "rgba(27, 69, 143,0.5)",
     everton: "rgba(39,68,136,0.5)",
-    "fulham fc": "rgba(0, 0, 0,0.5)",
+    fulham: "rgba(0, 0, 0,0.5)",
     "leeds united": "rgba(255,205,0,0.5)",
     "leicester city": "rgba(0,83,160,0.5)",
-    "liverpool fc": "rgba(200, 16, 46,0.5)",
-    "newcastle fc": "rgba(45, 41, 38,0.5)",
+    liverpool: "rgba(200, 16, 46,0.5)",
+    newcastle: "rgba(45, 41, 38,0.5)",
     "nottingham forest": "rgba(229, 50, 51,0.5)",
-    "southampton fc": "rgba(215, 25, 32,0.5)",
+    southampton: "rgba(215, 25, 32,0.5)",
     tottenham: "rgba(19, 34, 87,0.5)",
     "west ham": "rgba(122, 38, 58,0.5)",
-    "wolverhampton wanderers": "rgba(253,185,19,0.5)",
+    wolverhampton: "rgba(253,185,19,0.5)",
+    brentford: "rgb(239, 1, 7,0.5)",
   };
 
   const datasets = [];
@@ -99,7 +101,7 @@ export function SentimentPlot({ sentiment }) {
     }
     datasets.push(datasetsObj);
   });
-  const labels = ["11/29/2022", "11/30/2022", "11/31/2022"];
+  const labels = ["11/29/2022", "11/30/2022", "11/31/2022", "12/01/2022"];
   const data = {
     labels,
     datasets,
