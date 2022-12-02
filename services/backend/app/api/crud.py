@@ -18,9 +18,15 @@ def get_tweet_sentiment():
     tweet_sentiment = db.session.query(Tweet).order_by(desc(Tweet.date)).limit(7)
     tweet_sentiment_json = {}
     for sentiment_info in tweet_sentiment:
-        tweet_sentiment_json[sentiment_info.tweets_id] = {'tweets_id':sentiment_info.tweets_id,
-                                                        'tweets_sentiment':sentiment_info.tweets,
-                                                        'date':sentiment_info.date}
+        
+        date = sentiment_info.date
+        id = sentiment_info.tweets_id
+        
+        for tweet in sentiment_info.tweets:
+            for team, sentiment in tweet.items():
+                if team not in tweet_sentiment_json:
+                    tweet_sentiment_json[team] = []
+                tweet_sentiment_json[team].append({'date':date,'id':id,'sentiment':sentiment})
 
     return tweet_sentiment_json
 
