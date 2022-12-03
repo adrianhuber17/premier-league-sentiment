@@ -1,9 +1,19 @@
 """CRUD operations"""
 
 from app import db
-from app.api.model import Tweet
+from app.api.model import Tweet,TweetCount
 from sqlalchemy import desc
 from flask import jsonify
+
+def add_seven_day_tweet_count(tweets_count_json):
+    """adds total tweet count for the last 7 days for each team"""
+
+    count = tweets_count_json[0]
+    date_start = tweets_count_json[1]
+
+    tweets_count = TweetCount(date_start=date_start,tweet_count=count)
+
+    return tweets_count
 
 def add_tweet_sentiment(tweets_sentiment_json):
     """adds daily tweet sentiment to database"""
