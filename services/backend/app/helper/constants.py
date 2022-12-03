@@ -29,7 +29,7 @@ def random_injection(data):
 
     for sentiment in data:
         for sent in sentiment.values():
-            rand_value = random.randint(50,80)
+            rand_value = random.randint(30,100)
             sent['positive_percentage'] = rand_value
 
     return data

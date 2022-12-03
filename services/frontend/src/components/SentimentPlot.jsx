@@ -23,6 +23,12 @@ ChartJS.register(
 );
 
 export const options = {
+  scales: {
+    y: {
+      min: 0,
+      max: 100,
+    },
+  },
   responsive: true,
   plugins: {
     legend: {
@@ -80,12 +86,15 @@ export function SentimentPlot({ sentiment }) {
     wolverhampton: "rgba(253,185,19,0.5)",
     brentford: "rgb(239, 1, 7,0.5)",
   };
-
+  const sentimentData = sentiment[0];
+  const dates = sentiment[1].reverse();
+  console.log(dates);
   const datasets = [];
-  Object.keys(sentiment).forEach(function (key) {
+  Object.keys(sentimentData).forEach(function (key) {
     const datasetsObj = {};
     datasetsObj["label"] = key;
-    datasetsObj["data"] = sentiment[key];
+    const reverseSentimenArr = sentimentData[key].reverse();
+    datasetsObj["data"] = reverseSentimenArr;
     datasetsObj["lineTension"] = 0.1;
     if (key in teamBorderColors) {
       datasetsObj["borderColor"] = teamBorderColors[key];
@@ -113,6 +122,5 @@ export function SentimentPlot({ sentiment }) {
     datasets,
   };
 
-  console.log(sentiment);
   return <Line options={options} data={data} />;
 }
