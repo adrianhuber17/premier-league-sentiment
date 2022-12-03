@@ -24,6 +24,17 @@ DATABASE_INJECTION = [{'arsenal': {'positive_tweet_count': 331, 'negative_tweet_
                         {'west ham': {'positive_tweet_count': 351, 'negative_tweet_count': 148, 'tweet_count': 499, 'positive_percentage': 70.3, 'negative_percentage': 29.7}}, 
                         {'wolverhampton': {'positive_tweet_count': 296, 'negative_tweet_count': 125, 'tweet_count': 421, 'positive_percentage': 70.3, 'negative_percentage': 29.7}}]
 
+DATABASE_INJECTION_2 = [('chelsea', 98344), ('arsenal', 76936), 
+                        ('liverpool', 67462), ('newcastle', 26826), 
+                        ('manchester united', 25233), ('brighton', 19080),
+                        ('everton', 16225), ('tottenham', 12820), 
+                        ('west ham', 8164), ('southampton', 7505), 
+                        ('manchester city', 5337), ('bournemouth', 4622), 
+                        ('leeds united', 3831), ('crystal palace', 3449), 
+                        ('aston villa', 3408), ('wolverhampton', 3270), 
+                        ('fulham', 3238), ('brentford', 2136), 
+                        ('nottingham forest', 1489), ('leicester city', 1373)]
+
 def random_injection(data):
     import random
 

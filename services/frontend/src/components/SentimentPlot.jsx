@@ -88,7 +88,6 @@ export function SentimentPlot({ sentiment }) {
   };
   const sentimentData = sentiment[0];
   const dates = sentiment[1].reverse();
-  console.log(dates);
   const datasets = [];
   Object.keys(sentimentData).forEach(function (key) {
     const datasetsObj = {};
@@ -108,15 +107,17 @@ export function SentimentPlot({ sentiment }) {
     }
     datasets.push(datasetsObj);
   });
-  const labels = [
-    "11/29/2022",
-    "11/30/2022",
-    "11/31/2022",
-    "12/01/2022",
-    "12/01/2022",
-    "12/03/2022",
-    "12/04/2022",
-  ];
+  const labels = [];
+  dates.map((date) => {
+    const testDateTime = new Date(date);
+    const month = testDateTime.getUTCMonth();
+    const day = testDateTime.getUTCDate();
+    const year = testDateTime.getFullYear();
+    labels.push(month + "/" + day + "/" + year);
+    return labels;
+  });
+  console.log(labels);
+
   const data = {
     labels,
     datasets,
