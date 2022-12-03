@@ -19,9 +19,6 @@ from sklearn.metrics import confusion_matrix, classification_report
 
 def get_tweet_sentiment(data):
     print("-----Uploading data set-----")
-    # #TODO: add data set from tweets after they are clean
-    # data = {'text': ["I hate my job", "she sucks","i am great","lets go", "her farts smell bad"]}
-    # df = pd.DataFrame(data=data)
     print(data.columns)
     column = data.columns[0]
     X_test = data[column]
