@@ -26,7 +26,7 @@ class GetTweetCount:
 
         self.__rank_tweet_count()
 
-        return self.team_tweets_count_rank
+        return [self.team_tweets_count_rank,datetime.utcnow()- timedelta(days=7)]
 
     def __rank_tweet_count(self):
         for team,total_tweet_count in self.team_tweets_count.items():
@@ -48,10 +48,6 @@ class GetTweetCount:
         if response.status_code != 200:
             raise Exception(response.status_code, response.text)
         return response.json()
-
-
-
-
 
 count = GetTweetCount()
 print(count.get_team_tweet_count())

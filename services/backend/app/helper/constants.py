@@ -1,3 +1,5 @@
+from datetime import datetime
+
 PREMIER_LEAGUE_TEAMS = ["arsenal","aston villa","bournemouth","brentford","brighton","chelsea",
                         "crystal palace","everton","fulham","leeds united","leicester city","liverpool","manchester city",
                         "manchester united","newcastle","nottingham forest","southampton","tottenham",
@@ -24,7 +26,7 @@ DATABASE_INJECTION = [{'arsenal': {'positive_tweet_count': 331, 'negative_tweet_
                         {'west ham': {'positive_tweet_count': 351, 'negative_tweet_count': 148, 'tweet_count': 499, 'positive_percentage': 70.3, 'negative_percentage': 29.7}}, 
                         {'wolverhampton': {'positive_tweet_count': 296, 'negative_tweet_count': 125, 'tweet_count': 421, 'positive_percentage': 70.3, 'negative_percentage': 29.7}}]
 
-DATABASE_INJECTION_2 = [('chelsea', 98344), ('arsenal', 76936), 
+DATABASE_INJECTION_2 = [[('chelsea', 98344), ('arsenal', 76936), 
                         ('liverpool', 67462), ('newcastle', 26826), 
                         ('manchester united', 25233), ('brighton', 19080),
                         ('everton', 16225), ('tottenham', 12820), 
@@ -33,7 +35,9 @@ DATABASE_INJECTION_2 = [('chelsea', 98344), ('arsenal', 76936),
                         ('leeds united', 3831), ('crystal palace', 3449), 
                         ('aston villa', 3408), ('wolverhampton', 3270), 
                         ('fulham', 3238), ('brentford', 2136), 
-                        ('nottingham forest', 1489), ('leicester city', 1373)]
+                        ('nottingham forest', 1489), ('leicester city', 1373)], 
+                        datetime(2022, 11, 26, 22, 53, 34, 465510)]
+
 
 def random_injection(data):
     import random
@@ -44,4 +48,3 @@ def random_injection(data):
             sent['positive_percentage'] = rand_value
 
     return data
-
