@@ -38,7 +38,8 @@ export const data = {
     },
   ],
 };
-
+//TODO: populate dougnut plot with incoming tweet count information
+//need to deconstruct and construct the data object for the plot
 export function TotalTweetCountPlot({ count }) {
   const currDate = count.curr_date;
   const startDate = count.start_date;
