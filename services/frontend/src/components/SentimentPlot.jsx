@@ -94,16 +94,9 @@ export function SentimentPlot({ sentiment }) {
     const reverseSentimenArr = sentimentData[key].reverse();
     datasetsObj["data"] = reverseSentimenArr;
     datasetsObj["lineTension"] = 0.1;
-    if (key in teamBorderColors) {
-      datasetsObj["borderColor"] = teamBorderColors[key];
-    } else {
-      datasetsObj["borderColor"] = "rgb(255, 99, 132)";
-    }
-    if (key in teamBackgroundColors) {
-      datasetsObj["backgroundColor"] = teamBackgroundColors[key];
-    } else {
-      datasetsObj["backgroundColor"] = "rgba(255, 99, 132, 0.5)";
-    }
+    datasetsObj["borderColor"] = teamBorderColors[key];
+    datasetsObj["backgroundColor"] = teamBackgroundColors[key];
+
     datasets.push(datasetsObj);
   });
   const labels = [];
