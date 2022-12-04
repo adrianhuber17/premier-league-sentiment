@@ -1,5 +1,5 @@
 from flask_restx import Namespace,Resource
-from app.api.crud import get_tweet_sentiment,add_tweet_sentiment
+from app.api.crud import get_seven_day_tweet_count
 from flask import jsonify
 from app.helper.nlp_tweets import nlp_tweets
 from app import db
@@ -7,11 +7,13 @@ from app import db
 get_tweet_count_namespace = Namespace("get-tweets-count")
 
 class GetTweetsCount(Resource):
-    #TODO: after model is created in the database, create end points
     def get(self):
-        tweet_sentiment_json = get_tweet_sentiment()
-        return jsonify({"status":"success","message":tweet_sentiment_json})
+
+        tweet_count_json = get_seven_day_tweet_count()
+
+        return jsonify({"status":"success","message":tweet_count_json})
     
+    #TODO:add a post request to get data from the twitter api
     # def post(self):
     #     tweet_sentiments = nlp_tweets()
     #     print("-----sentiment going into the database-----")
