@@ -9,9 +9,12 @@ def get_seven_day_tweet_count():
     """get 7 days tweet counts for all teams"""
 
     tweet_count = db.session.query(TweetCount).order_by(desc(TweetCount.date_curr)).first()
+    if not tweet_count:
+        return {}
     tweet_count_json = {'curr_date':tweet_count.date_curr,
                         'start_date':tweet_count.date_start,
                         'tweet_count':tweet_count.tweet_count}
+    
     
     return tweet_count_json
 
