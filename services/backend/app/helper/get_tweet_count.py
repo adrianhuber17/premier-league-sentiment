@@ -48,6 +48,3 @@ class GetTweetCount:
         if response.status_code != 200:
             raise Exception(response.status_code, response.text)
         return response.json()
-
-count = GetTweetCount()
-print(count.get_team_tweet_count())

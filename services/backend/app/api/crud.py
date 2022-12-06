@@ -22,7 +22,7 @@ def add_seven_day_tweet_count(tweets_count_json):
     date_start = tweets_count_json[1]
 
     tweets_count = TweetCount(date_start=date_start,tweet_count=count)
-
+    
     return tweets_count
 
 def add_tweet_sentiment(tweets_sentiment_json):
