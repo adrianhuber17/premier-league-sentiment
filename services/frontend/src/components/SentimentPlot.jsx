@@ -87,6 +87,7 @@ export function SentimentPlot({ sentiment }) {
   };
   const sentimentData = sentiment[0];
   const dates = sentiment[1].reverse();
+  console.log(dates);
   const datasets = [];
   Object.keys(sentimentData).forEach(function (key) {
     const datasetsObj = {};
