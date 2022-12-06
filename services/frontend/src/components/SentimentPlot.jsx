@@ -108,7 +108,6 @@ export function SentimentPlot({ sentiment }) {
     labels.push(month + "/" + day + "/" + year);
     return labels;
   });
-  console.log(labels);
 
   const data = {
     labels,
