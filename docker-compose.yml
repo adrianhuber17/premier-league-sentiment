@@ -14,7 +14,7 @@ services:
       - FLASK_ENV=development
       - APP_SETTINGS=app.config.DevelopmentConfig
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/app_dev
-      - DATABASE_TEST_URL=postgresql://postgres:postgres@api-db:5432/app_test
+      - DATABASE_TEST_URL=postgresql://postgres:postgres@db:5432/app_test
       - SECRET_KEY=secret
     depends_on:
       - db
