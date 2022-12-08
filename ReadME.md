@@ -7,6 +7,15 @@ The sentiment analysis is done using NLP (machine learning). The data pipeline c
 
 ![](/ReadMeImages/dataPipeline.jpeg)
 
+# To Do:
+
+- Test data processing and clean up
+- Test nlp model and resulting data
+- Add Celery
+- Add Redis
+- Find better way of displaying sentiment plot
+- Style dashboard (from web samples)
+
 # Tech Stack...more to come 📚
 
 **Client:** ReactJS, JavaScript, Chart.js
