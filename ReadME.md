@@ -7,6 +7,10 @@ The sentiment analysis is done using NLP (machine learning). The data pipeline c
 
 ![](/ReadMeImages/dataPipeline.jpeg)
 
+# Plot Examples:
+
+![](/ReadMeImages/CurrSentimentPlot.png)
+
 # To Do:
 
 - Test data processing and clean up
