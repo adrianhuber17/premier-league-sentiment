@@ -10,8 +10,8 @@ class GetTweetCount:
     def __init__(self):
         load_dotenv()
         self.bearer_token = os.getenv('BEARER_TOKEN')
-        self.seven_day_range = (datetime.utcnow()- timedelta(days=7)).strftime("%Y-%m-%dT%H:%M:%SZ")
-        print("fetch time 7 days: ",self.seven_day_range)
+        self.seven_day_range = (datetime.utcnow()- timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        print("fetch time -1 days: ",self.seven_day_range)
         self.search_url = "https://api.twitter.com/2/tweets/counts/recent"
         self.teams = PREMIER_LEAGUE_TEAMS
         self.team_tweets_count = {}
@@ -26,7 +26,7 @@ class GetTweetCount:
 
         self.__rank_tweet_count()
 
-        return [self.team_tweets_count_rank,datetime.utcnow()- timedelta(days=7)]
+        return [self.team_tweets_count_rank,datetime.utcnow()- timedelta(days=1)]
 
     def __rank_tweet_count(self):
         for team,total_tweet_count in self.team_tweets_count.items():
