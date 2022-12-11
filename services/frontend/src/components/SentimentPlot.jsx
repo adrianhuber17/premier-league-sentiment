@@ -36,7 +36,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Premier League Sentiment",
+      text: "Premier League Sentiment - 7 Day moving",
     },
   },
 };

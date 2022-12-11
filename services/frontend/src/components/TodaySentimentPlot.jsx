@@ -9,7 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-// import { faker } from "@faker-js/faker";
 
 ChartJS.register(
   CategoryScale,
@@ -34,17 +33,21 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Chart.js Horizontal Bar Chart",
+      text: "Today's Team Sentiment",
     },
     scales: {
-      x: {
-        stacked: true,
-        min: 0,
-        max: 100,
-      },
-      y: {
-        stacked: true,
-      },
+      x: [
+        {
+          stacked: true,
+          min: 0,
+          max: 100,
+        },
+      ],
+      y: [
+        {
+          stacked: true,
+        },
+      ],
     },
   },
 };
@@ -52,26 +55,31 @@ export const options = {
 export function TodaySentimentPlot({ sentiment }) {
   const sentimentData = sentiment[0];
   const labels = [];
-  const teamLatestSentiment = [];
+  const teamLatestPosSentiment = [];
+  const teamLatestNegSentiment = [];
   Object.keys(sentimentData).forEach(function (key) {
     labels.push(key);
-    teamLatestSentiment.push(sentimentData[key].at(-1));
+    const posSentiment = sentimentData[key].at(-1);
+    teamLatestPosSentiment.push(posSentiment);
+    teamLatestNegSentiment.push(100 - posSentiment);
   });
   const data = {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
-        data: teamLatestSentiment,
+        stack: "stack",
+        label: "Positive Sentiment",
+        data: teamLatestPosSentiment,
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
-      //   {
-      //     label: "Dataset 2",
-      //     data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
-      //     borderColor: "rgb(255, 99, 132)",
-      //     backgroundColor: "rgba(255, 99, 132, 0.5)",
-      //   },
+      {
+        stack: "stack",
+        label: "Negative Sentiment",
+        data: teamLatestNegSentiment,
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
     ],
   };
 
