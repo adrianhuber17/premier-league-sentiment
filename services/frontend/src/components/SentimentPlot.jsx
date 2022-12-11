@@ -87,13 +87,15 @@ export function SentimentPlot({ sentiment }) {
     brentford: "rgb(239, 1, 7,0.5)",
   };
   const sentimentData = sentiment[0];
-  const dates = sentiment[1].reverse();
+  console.log(sentiment);
+  // const dates = sentiment[1].reverse();
+  const dates = sentiment[1];
   console.log(dates);
   const datasets = [];
   Object.keys(sentimentData).forEach(function (key) {
     const datasetsObj = {};
     datasetsObj["label"] = key;
-    const reverseSentimenArr = sentimentData[key].reverse();
+    const reverseSentimenArr = sentimentData[key];
     datasetsObj["data"] = reverseSentimenArr;
     datasetsObj["lineTension"] = 0.1;
     datasetsObj["borderColor"] = teamBorderColors[key];
