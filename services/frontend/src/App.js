@@ -4,6 +4,7 @@ import { TotalTweetCountPlot } from "./components/TotalTweetCountPlot";
 import "./App.css";
 import Pong from "./components/Pong";
 import { useEffect, useState } from "react";
+import { TodaySentimentPlot } from "./components/TodaySentimentPlot";
 
 function App() {
   const [count, setCount] = useState({});
@@ -53,6 +54,7 @@ function App() {
       <>
         {loadingPing === false && <Pong connection={connection} />}
         {loading === false && <SentimentPlot sentiment={sentiment} />}
+        {loading === false && <TodaySentimentPlot sentiment={sentiment} />}
         {loadingCount === false && <TotalTweetCountPlot count={count} />}
       </>
     </div>

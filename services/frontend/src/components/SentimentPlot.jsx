@@ -87,8 +87,6 @@ export function SentimentPlot({ sentiment }) {
     brentford: "rgb(239, 1, 7,0.5)",
   };
   const sentimentData = sentiment[0];
-  console.log(sentiment);
-  // const dates = sentiment[1].reverse();
   const dates = sentiment[1];
   console.log(dates);
   const datasets = [];
