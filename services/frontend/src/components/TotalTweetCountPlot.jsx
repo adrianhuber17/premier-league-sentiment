@@ -18,6 +18,7 @@ export function TotalTweetCountPlot({ count }) {
 
   const options = {
     responsive: true,
+    aspectRatio: 1.3,
     plugins: {
       title: {
         display: true,
@@ -91,6 +92,7 @@ export function TotalTweetCountPlot({ count }) {
     data.datasets[0].data.push(count);
     data.datasets[0].backgroundColor.push(teamBackgroundColors[team]);
     data.datasets[0].borderColor.push(teamBorderColors[team]);
+    return data;
   });
 
   return <Doughnut data={data} options={options} />;
