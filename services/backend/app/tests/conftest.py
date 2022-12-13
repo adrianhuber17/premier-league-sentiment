@@ -9,7 +9,7 @@ def test_app():
     with app.app_context():
         yield app
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def test_database():
     db.create_all()
     yield db
