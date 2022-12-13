@@ -11,7 +11,14 @@ class GetTweetsCount(Resource):
 
         tweet_count_json = get_seven_day_tweet_count()
 
-        return jsonify({"status":"success","message":tweet_count_json})
+        if not tweet_count_json:
+            response = jsonify({"status":"error","message":"database is empty"})
+            response.status_code = 404
+            return response
+        
+        response = jsonify({"status":"success","message":tweet_count_json})
+        response.status_code = 200
+        return response
     
     def post(self):
         print("-----fetching tweet 1 day count-----")
@@ -22,6 +29,8 @@ class GetTweetsCount(Resource):
         latest_tweet_count_json = get_seven_day_tweet_count()
         print(latest_tweet_count_json)
         print("One day tweet count added to db")
-        return jsonify({"status:":"success","message":latest_tweet_count_json})
+        response = jsonify({"status:":"success","message":latest_tweet_count_json})
+        response.status_code = 201
+        return response
 
 get_tweet_count_namespace.add_resource(GetTweetsCount,"")
