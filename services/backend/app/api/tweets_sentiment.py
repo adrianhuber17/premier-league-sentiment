@@ -9,7 +9,13 @@ get_tweet_sentiment_namespace = Namespace("get-tweets")
 class GetTweetsSentiment(Resource):
     def get(self):
         tweet_sentiment_json = get_tweet_sentiment()
-        return jsonify({"status":"success","message":tweet_sentiment_json})
+        if not tweet_sentiment_json[0] or not tweet_sentiment_json[1]:
+            response = jsonify({"status":"error","message":"database is empty"})
+            response.status_code = 404
+            return response
+        response =jsonify({"status":"success","message":tweet_sentiment_json})
+        response.status_code = 200
+        return response
     
     def post(self):
         tweet_sentiments = nlp_tweets()
@@ -19,6 +25,8 @@ class GetTweetsSentiment(Resource):
         db.session.add(add_daily_tweet_sentiment)
         db.session.commit()
         print("tweets sentimet added")
-        return tweet_sentiments, 200
+        response = jsonify({"status:":"success","message":tweet_sentiments})
+        response.status_code = 201
+        return response
 
 get_tweet_sentiment_namespace.add_resource(GetTweetsSentiment,"")
