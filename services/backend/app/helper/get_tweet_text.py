@@ -37,7 +37,7 @@ class GetTweets:
         for team in self.teams:
             count = 0
             print(f"Fetching tweets for {team}")
-            query_params = {'query': f"\"#{team}\" lang:en -is:retweet",
+            query_params = {'query': f"\"{team}\" lang:en -is:retweet",
                             'start_time': self.yesterday_date,
                             'max_results':100,
                             }
