@@ -1,9 +1,8 @@
 from datetime import datetime
 
-PREMIER_LEAGUE_TEAMS = ["arsenal","aston villa","bournemouth","brentford","brighton","chelsea",
-                        "crystal palace","everton","fulham","leeds united","leicester city","liverpool","manchester city",
-                        "manchester united","newcastle","nottingham forest","southampton","tottenham",
-                        "west ham","wolverhampton"]
+PREMIER_LEAGUE_TEAMS = ["arsenal","chelsea",
+                        "liverpool","manchester city",
+                        "manchester united","tottenham"]
 
 DATABASE_INJECTION = [{'arsenal': {'positive_tweet_count': 331, 'negative_tweet_count': 168, 'tweet_count': 499, 'positive_percentage': 66.3, 'negative_percentage': 33.7}}, 
                         {'aston villa': {'positive_tweet_count': 278, 'negative_tweet_count': 77, 'tweet_count': 355, 'positive_percentage': 78.3, 'negative_percentage': 21.7}}, 

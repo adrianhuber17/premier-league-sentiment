@@ -13,7 +13,7 @@ class GetTweetsCount(Resource):
 
         if not tweet_count_json:
             response = jsonify({"status":"error","message":"database is empty"})
-            response.status_code = 404
+            response.status_code = 200
             return response
         
         response = jsonify({"status":"success","message":tweet_count_json})

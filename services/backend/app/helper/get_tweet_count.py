@@ -19,7 +19,7 @@ class GetTweetCount:
     
     def get_team_tweet_count(self):
         for team in PREMIER_LEAGUE_TEAMS:
-            query_params = {'query': f"\"{team}\" lang:en -is:retweet",'start_time': self.seven_day_range}
+            query_params = {'query': f"\"{team}\"",'start_time': self.seven_day_range}
             json_response = self.__connect_to_endpoint(self.search_url, query_params)
             total_tweet_count = json_response["meta"]
             self.team_tweets_count[team] = total_tweet_count

@@ -14,8 +14,13 @@ function App() {
     fetch(url, { credentials: "include" })
       .then((response) => response.json())
       .then((responseData) => {
-        setCount(responseData.message);
-        setLoadingCount(false);
+        console.log(responseData); //{message: 'database is empty', status: 'error'}
+        if (responseData.status === "error") {
+          setCount({});
+        } else {
+          setCount(responseData.message);
+          setLoadingCount(false);
+        }
       });
   }, []);
 
