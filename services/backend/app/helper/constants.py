@@ -3,7 +3,7 @@ from datetime import datetime
 PREMIER_LEAGUE_TEAMS = ["arsenal","chelsea",
                         "liverpool","manchester city",
                         "manchester united","tottenham"]
-
+#TODO: need to fix injections to get less teams, and also need to figure out query for manchester city
 DATABASE_INJECTION = [{'arsenal': {'positive_tweet_count': 331, 'negative_tweet_count': 168, 'tweet_count': 499, 'positive_percentage': 66.3, 'negative_percentage': 33.7}}, 
                         {'aston villa': {'positive_tweet_count': 278, 'negative_tweet_count': 77, 'tweet_count': 355, 'positive_percentage': 78.3, 'negative_percentage': 21.7}}, 
                         {'bournemouth': {'positive_tweet_count': 338, 'negative_tweet_count': 160, 'tweet_count': 498, 'positive_percentage': 67.9, 'negative_percentage': 32.1}}, 
