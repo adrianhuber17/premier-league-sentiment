@@ -104,7 +104,7 @@ export function SentimentPlot({ sentiment }) {
   const labels = [];
   dates.map((date) => {
     const testDateTime = new Date(date);
-    const month = testDateTime.getUTCMonth();
+    const month = testDateTime.getUTCMonth() + 1;
     const day = testDateTime.getUTCDate();
     const year = testDateTime.getFullYear();
     labels.push(month + "/" + day + "/" + year);

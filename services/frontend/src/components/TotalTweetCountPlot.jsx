@@ -9,11 +9,11 @@ export function TotalTweetCountPlot({ count }) {
   const teamTweetCount = count.tweet_count;
 
   const currDateTime = new Date(currDate);
-  const currMonth = currDateTime.getUTCMonth();
+  const currMonth = currDateTime.getUTCMonth() + 1;
   const currDay = currDateTime.getUTCDate();
 
   const startDateTime = new Date(startDate);
-  const startMonth = startDateTime.getUTCMonth();
+  const startMonth = startDateTime.getUTCMonth() + 1;
   const startDay = startDateTime.getUTCDate();
 
   const options = {
