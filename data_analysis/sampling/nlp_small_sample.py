@@ -6,8 +6,8 @@ import pandas as pd
 import string
 
 # plotting :
-# import seaborn as sns
-# from wordcloud import WordCloud
+import seaborn as sns
+from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 # nltk :
@@ -19,7 +19,8 @@ nltk.download('wordnet')
 nltk.download('omw-1.4')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
-# get new data
+
+# import new data
 # analyze new data
 # clean new data
 # separate training data from test data
