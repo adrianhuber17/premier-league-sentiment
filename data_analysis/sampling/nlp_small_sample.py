@@ -21,8 +21,11 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 
 # import new data
+columns = ["target","number","date","query","user","text"]
 df = pd.read_csv("/Users/adrianhuber/football-sentiment/services/backend/app/NLP/train_model/training_data_set.csv",encoding_errors='ignore')
-print(df.head())
+df.columns = columns
+raw_data_df = df[["target","text"]]
+print(raw_data_df)
 # analyze new data
 # clean new data
 # separate training data from test data
