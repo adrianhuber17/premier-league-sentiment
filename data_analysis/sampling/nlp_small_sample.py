@@ -105,6 +105,14 @@ print("-----tokenizing into words-----")
 neg_df["clean_text"] = neg_df["clean_text"].apply(word_tokenize)
 pos_df["clean_text"] = pos_df["clean_text"].apply(word_tokenize)
 
+# Removing words with one letter
+print("-----removing words with one letter-----")
+def remove_words_len_one(sentence):
+    return [word for word in sentence if len(word) > 1 or not word.isalpha()]
+
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: remove_words_len_one(x))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: remove_words_len_one(x))
+
  # Applying Stemming
 print("-----Applying Stemming-----")
 st = PorterStemmer()
