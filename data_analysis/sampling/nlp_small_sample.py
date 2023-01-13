@@ -32,9 +32,12 @@ raw_data_df = df[["target","text"]]
 neg_df = raw_data_df.loc[raw_data_df["target"]==4]
 pos_df = raw_data_df.loc[raw_data_df["target"]==0]
 
+# get first 5 records for both neg/pos
+neg_df = neg_df.iloc[0:5].reset_index(drop=True)
+pos_df = pos_df.iloc[0:5].reset_index(drop=True)
 print(neg_df)
 print(pos_df)
-# analyze new data
+
 # clean new data
 # separate training data from test data
 # create and test model
