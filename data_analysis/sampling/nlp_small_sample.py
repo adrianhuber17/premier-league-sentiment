@@ -88,6 +88,13 @@ def cleaning_stopwords(text):
 neg_df["clean_text"] = neg_df["clean_text"].apply(lambda text: cleaning_stopwords(text))
 pos_df["clean_text"] = pos_df["clean_text"].apply(lambda text: cleaning_stopwords(text))
 
+def remove_emojis_and_text(text):
+    emoji_pattern = re.compile("([\U0001f600-\U0001f64f\U0001f300-\U0001f5ff\U0001f680-\U0001f6ff\U0001f1e0-\U0001f1ff]+\S*)", flags=re.UNICODE)
+    return emoji_pattern.sub(r'', text)
+
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda text: remove_emojis_and_text(text))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda text: remove_emojis_and_text(text))
+
 # Remove white spaces
 print("-----removing white spaces-----")
 neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: x.strip())
