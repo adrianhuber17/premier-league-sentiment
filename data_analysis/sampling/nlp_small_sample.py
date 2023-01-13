@@ -116,6 +116,16 @@ def lemmatizer_on_text(data):
 neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: lemmatizer_on_text(x))
 pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: lemmatizer_on_text(x))
 
+# Turn lists back to string
+print("-----Turn tokenized list back to a string-----")
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: ' '.join(x))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: ' '.join(x))
+
+check_nan_neg = neg_df["clean_text"].isnull().values.any()
+check_nan_pos = pos_df["clean_text"].isnull().values.any()
+print('missing values negative?: ' + str(check_nan_neg))
+print('missing values positive?: ' + str(check_nan_pos))
+
 print(neg_df)
 print(pos_df)
 # separate training data from test data
