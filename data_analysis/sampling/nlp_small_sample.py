@@ -53,9 +53,17 @@ pos_df["clean_text"] = pos_df["clean_text"].str.lower()
 # Remove numbers
 print("-----removing number-----")
 def cleaning_numbers(data):
-    return re.sub('[0-9]+', '', data)
+    return re.sub(r'\w*\d\w*', '', data)
 neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: cleaning_numbers(x))
 pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: cleaning_numbers(x))
+
+# Remove links
+print("-----removing links-----")
+def cleaning_URLs(data):
+    return re.sub('((www\S+)|(http\S+))', ' ', data)
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: cleaning_URLs(x))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: cleaning_URLs(x))
+
 
 print(neg_df)
 print(pos_df)
