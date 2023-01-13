@@ -35,9 +35,30 @@ pos_df = raw_data_df.loc[raw_data_df["target"]==0]
 # get first 5 records for both neg/pos
 neg_df = neg_df.iloc[0:5].reset_index(drop=True)
 pos_df = pos_df.iloc[0:5].reset_index(drop=True)
+neg_df["clean_text"] = neg_df["text"]
+pos_df["clean_text"] = pos_df["text"]
+
+# clean new data
+TAG_CLEANING_RE = "@\S+"
+print("-----removing @tags-----")
+# Remove @tags
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: re.sub(TAG_CLEANING_RE, ' ', x))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: re.sub(TAG_CLEANING_RE, ' ', x))
+
+# Smart lowercase
+print("-----making lower case-----")
+neg_df["clean_text"] = neg_df["clean_text"].str.lower()
+pos_df["clean_text"] = pos_df["clean_text"].str.lower()
+
+# Remove numbers
+print("-----removing number-----")
+def cleaning_numbers(data):
+    return re.sub('[0-9]+', '', data)
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: cleaning_numbers(x))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: cleaning_numbers(x))
+
 print(neg_df)
 print(pos_df)
-
 # clean new data
 # separate training data from test data
 # create and test model
