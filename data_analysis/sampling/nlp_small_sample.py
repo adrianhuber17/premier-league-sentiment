@@ -11,14 +11,14 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 # nltk :
-# import nltk
-# from nltk.stem import WordNetLemmatizer,PorterStemmer
-# from nltk.tokenize import word_tokenize
-# nltk.download('punkt')
-# nltk.download('wordnet')
-# nltk.download('omw-1.4')
-# nltk.download('stopwords')
-# from nltk.corpus import stopwords
+import nltk
+from nltk.stem import WordNetLemmatizer,PorterStemmer
+from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+nltk.download('stopwords')
+from nltk.corpus import stopwords
 
 # import new data
 columns = ["target","number","date","query","user","text"]
@@ -80,10 +80,44 @@ def cleaning_punctuations(text):
 neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: cleaning_punctuations(x))
 pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: cleaning_punctuations(x))
 
+# Filter out stop words
+print("-----filter out stop words-----")
+stop_words = set(stopwords.words('english'))
+def cleaning_stopwords(text):
+    return " ".join([word for word in str(text).split() if word not in stop_words])
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda text: cleaning_stopwords(text))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda text: cleaning_stopwords(text))
+
+# Remove white spaces
+print("-----removing white spaces-----")
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: x.strip())
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: x.strip())
+
+# Tokenize into words
+print("-----tokenizing into words-----")
+neg_df["clean_text"] = neg_df["clean_text"].apply(word_tokenize)
+pos_df["clean_text"] = pos_df["clean_text"].apply(word_tokenize)
+
+ # Applying Stemming
+print("-----Applying Stemming-----")
+st = PorterStemmer()
+def stemming_on_text(data):
+    text = [st.stem(word) for word in data]
+    return text
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: stemming_on_text(x))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: stemming_on_text(x))
+
+# ----Applying Lemmatizer :----
+print("-----Applying Lemmatizer-----")
+lm = WordNetLemmatizer()
+def lemmatizer_on_text(data):
+    text = [lm.lemmatize(word) for word in data]
+    return text
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: lemmatizer_on_text(x))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: lemmatizer_on_text(x))
 
 print(neg_df)
 print(pos_df)
-# clean new data
 # separate training data from test data
 # create and test model
 # check results
