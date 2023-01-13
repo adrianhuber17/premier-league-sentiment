@@ -64,6 +64,22 @@ def cleaning_URLs(data):
 neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: cleaning_URLs(x))
 pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: cleaning_URLs(x))
 
+#r"[^\s]*\.(com|org|net)\S*"
+# Remove domains
+print("-----removing domains-----")
+def cleaning_URLs(data):
+    return re.sub(r"[^\s]*\.(com|org|net)\S*", ' ', data)
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: cleaning_URLs(x))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: cleaning_URLs(x))
+
+print("-----removing punctuation-----")
+english_punctuation_list = string.punctuation
+def cleaning_punctuations(text):
+    translator = str.maketrans('', '', english_punctuation_list)
+    return text.translate(translator)
+neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: cleaning_punctuations(x))
+pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: cleaning_punctuations(x))
+
 
 print(neg_df)
 print(pos_df)
