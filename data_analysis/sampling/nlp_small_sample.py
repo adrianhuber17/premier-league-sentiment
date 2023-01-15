@@ -170,7 +170,7 @@ print('missing values?: ' + str(check_nan_pos))
 # print(neg_df)
 # print(pos_df)
 print(raw_data_df)
-raw_data_df.to_csv("clean_training_data.csv")
+raw_data_df.to_csv("/Users/adrianhuber/football-sentiment/data_analysis/sampling/clean_training_data.csv")
 
 # separate training data from test data
 # create and test model
