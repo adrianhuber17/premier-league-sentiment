@@ -20,7 +20,7 @@ nltk.download('omw-1.4')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 
-# import new data
+##### import new data #####
 columns = ["target","number","date","query","user","text"]
 df = pd.read_csv("/Users/adrianhuber/football-sentiment/services/backend/app/NLP/train_model/training_data_set.csv",encoding_errors='ignore')
 df.columns = columns
@@ -38,7 +38,7 @@ pos_df = pos_df.iloc[0:5].reset_index(drop=True)
 neg_df["clean_text"] = neg_df["text"]
 pos_df["clean_text"] = pos_df["text"]
 
-# clean new data
+##### clean new data #####
 TAG_CLEANING_RE = "@\S+"
 print("-----removing @tags-----")
 # Remove @tags
@@ -64,7 +64,6 @@ def cleaning_URLs(data):
 neg_df["clean_text"] = neg_df["clean_text"].apply(lambda x: cleaning_URLs(x))
 pos_df["clean_text"] = pos_df["clean_text"].apply(lambda x: cleaning_URLs(x))
 
-#r"[^\s]*\.(com|org|net)\S*"
 # Remove domains
 print("-----removing domains-----")
 def cleaning_URLs(data):
