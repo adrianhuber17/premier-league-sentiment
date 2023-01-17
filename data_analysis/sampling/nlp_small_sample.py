@@ -33,16 +33,6 @@ def import_data():
 
     return raw_data_df
 
-# df for negative and positive data
-# neg_df = raw_data_df.loc[raw_data_df["target"]==4]
-# pos_df = raw_data_df.loc[raw_data_df["target"]==0]
-
-# get first 5 records for both neg/pos
-# neg_df = neg_df.iloc[0:5].reset_index(drop=True)
-# pos_df = pos_df.iloc[0:5].reset_index(drop=True)
-# neg_df["clean_text"] = neg_df["text"]
-# pos_df["clean_text"] = pos_df["text"]
-
 def clean_data(raw_data_df):
     raw_data_df = raw_data_df.assign(clean_text=raw_data_df['text'])
     # raw_data_df["clean_text"] = raw_data_df["text"]
@@ -177,6 +167,8 @@ def clean_data(raw_data_df):
     print(raw_data_df)
     raw_data_df.to_csv("/Users/adrianhuber/football-sentiment/data_analysis/sampling/clean_training_data.csv")
 
+raw_data_df = import_data()
+clean_data(raw_data_df=raw_data_df)
 # separate training data from test data
 # create and test model
 # check results
