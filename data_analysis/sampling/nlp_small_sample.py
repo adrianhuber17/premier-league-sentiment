@@ -167,8 +167,13 @@ def clean_data(raw_data_df):
     print(raw_data_df)
     raw_data_df.to_csv("/Users/adrianhuber/football-sentiment/data_analysis/sampling/clean_training_data.csv")
 
-raw_data_df = import_data()
-clean_data(raw_data_df=raw_data_df)
-# separate training data from test data
-# create and test model
-# check results
+def create_nlp_model():
+    pass
+
+if __name__ == "__main__":
+
+    raw_data_df = import_data()
+    clean_data(raw_data_df=raw_data_df)
+    # separate training data from test data
+    # create and test model
+    # check results
