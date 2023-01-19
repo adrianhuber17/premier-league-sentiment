@@ -20,7 +20,9 @@ nltk.download('omw-1.4')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 
-def import_data():
+def import_data() -> pd.DataFrame:
+    """imports raw csv tweet data and outputs a data frame with 
+    the data"""
 
     ##### import new data #####
     print("DATA IMPORT")
