@@ -33,7 +33,8 @@ def import_data():
 
     return raw_data_df
 
-class NLP:
+class SentimentAnalysis:
+    """Class for getting sentiment analysis for tweets"""
 
     def clean_data(self,raw_data_df):
         """inputs an unorganized raw dataframe and outputs a csv with clean data"""
@@ -180,7 +181,7 @@ class NLP:
 if __name__ == "__main__":
 
     raw_data_df = import_data()
-    nlp = NLP()
-    nlp.clean_data(raw_data_df=raw_data_df)
-    nlp.train_model()
+    sentiment_analysis = SentimentAnalysis()
+    sentiment_analysis.clean_data(raw_data_df=raw_data_df)
+    sentiment_analysis.train_model()
     
